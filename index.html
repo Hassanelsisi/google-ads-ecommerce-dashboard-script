@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads E-commerce Dashboard Script V1.0</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        h1, h2, h3 {
+            color: #17a2b8; /* Info Blue */
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+        }
+        h1 {
+            font-size: 2.2em;
+            border-bottom: 2px solid #17a2b8;
+            padding-bottom: 0.4em;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 0.3em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #28a745; /* Success Green */
+        }
+        p, li {
+            font-size: 1em;
+            color: #495057;
+        }
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 1em;
+        }
+        li {
+            margin-bottom: 0.6em;
+        }
+        code, pre {
+            background-color: #e9ecef;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-size: 0.9em;
+            color: #c7254e; /* Bootstrap-like code color */
+        }
+        pre {
+            padding: 1em;
+            overflow-x: auto;
+            display: block;
+        }
+        strong {
+            color: #212529;
+        }
+        a {
+            color: #007bff; /* Primary Blue */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+        .author {
+            text-align: center;
+            margin-bottom: 1.5em;
+            font-size: 1.1em;
+        }
+        .note, .important-note {
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left-width: 5px;
+            border-left-style: solid;
+        }
+        .note {
+            background-color: #fff3cd; /* Warning Yellow Light */
+            border-left-color: #ffeeba; /* Warning Yellow */
+            color: #856404;
+        }
+        .important-note {
+            background-color: #f8d7da; /* Danger Red Light */
+            border-left-color: #f5c6cb; /* Danger Red */
+            color: #721c24;
+        }
+        .emoji {
+            font-size: 1.1em;
+        }
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Google Ads E-commerce Dashboard Script V1.0 <span class="emoji">💻📊🛍️</span></h1>
+        <p class="author">
+            <strong>Author:</strong> <a href="https://www.linkedin.com/in/hassan-elsisi/" target="_blank" rel="noopener noreferrer">Hassan El-Sisi</a>
+        </p>
+
+        <h2><span class="emoji">👋</span> Welcome! What's This All About?</h2>
+        <p>Hey there, Google Ads aficionado! Ever wished for a powerful tool to automatically generate a comprehensive e-commerce dashboard right within your Google Sheets? One that slices and dices your Google Ads data, highlighting key trends, product performance, and potential areas for optimization? You've found it!</p>
+        <p>This script is your dedicated assistant for creating an in-depth e-commerce performance dashboard. It connects to your Google Ads account, fetches a wealth of data using GAQL, and then neatly organizes it into a multi-tab Google Sheet, complete with KPIs, data tables, and even charts on the overview tab.</p>
+
+        <h3>Who is this for?</h3>
+        <ul>
+            <li><strong>E-commerce Store Owners/Managers</strong> directly managing their Google Ads.</li>
+            <li><strong>Digital Marketing Agencies</strong> looking to provide detailed and automated e-commerce reports to clients.</li>
+            <li><strong>PPC Specialists</strong> focusing on e-commerce campaigns who want a quick and structured overview of performance.</li>
+            <li>Anyone who wants a clearer, data-backed understanding of their Google Ads e-commerce results.</li>
+        </ul>
+
+        <h3>Why is it awesome?</h3>
+        <ul>
+            <li><span class="emoji">✅</span> <strong>Saves You Immense Time:</strong> Automates the tedious process of data extraction and report building.</li>
+            <li><span class="emoji">🎯</span> <strong>E-commerce Focused Insights:</strong> Provides specific metrics crucial for e-commerce success like ROAS, AOV, and product-level performance.</li>
+            <li><span class="emoji">⚙️</span> <strong>Highly Configurable:</strong> Tailor the reporting period and enable/disable specific analytical modules to fit your needs.</li>
+            <li><span class="emoji">📊</span> <strong>Data-Driven Overview:</strong> Get a clear view of your campaign, product, and overall account performance.</li>
+            <li><span class="emoji">📄</span> <strong>Organized & Comprehensive Reporting:</strong> All data is presented in a structured, multi-tab Google Sheet.</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <h2><span class="emoji">✨</span> Features at a Glance <span class="emoji">✨</span></h2>
+        <p>This script generates a detailed dashboard with various analytical sections:</p>
+        <ul>
+            <li><span class="emoji">📄</span> <strong>User Guide Tab</strong>: An in-sheet guide explaining the dashboard tabs and basic configuration.</li>
+            <li><span class="emoji">⚙️</span> <strong>Settings & Config Tab</strong>: Displays key script settings and account information used for the report generation.</li>
+            <li><span class="emoji">📊</span> <strong>Overview Dashboard</strong>:
+                <ul>
+                    <li>High-level account performance KPIs (Cost, Impressions, Clicks, Conversions, Conv. Value, ROAS, CPA, CVR, AOV).</li>
+                    <li>Top 5 Campaigns by Cost.</li>
+                    <li>Metrics by Device (Cost, Clicks, Conversions, etc.).</li>
+                    <li>Performance by Campaign Type.</li>
+                    <li><strong>Charts</strong>: Daily Performance Trends (Cost, Conversions, ROAS), Conversions by Device (Pie Chart), Top Products by various metrics (Bar Charts), Daily Conversion Value vs. Spend.</li>
+                </ul>
+            </li>
+            <li><span class="emoji">📈</span> <strong>Campaign Performance Tab</strong>: Detailed metrics for all active and enabled campaigns.</li>
+            <li><span class="emoji">🛍️</span> <strong>Product Performance Analysis Tab</strong>: Aggregated data for individual products, including e-commerce specific KPIs and rule-based recommendations.</li>
+            <li><span class="emoji">🖼️</span> <strong>Asset Performance Tab</strong> (Optional): Performance data for individual assets (e.g., headlines, descriptions, images). <em>Default in script: Disabled</em>.</li>
+            <li><span class="emoji">📉</span> <strong>Impression Share & Rank Tab</strong> (Optional): Campaign-level Search Impression Share, Top IS, Absolute Top IS, and IS lost due to budget or rank. <em>Default in script: Enabled</em>.</li>
+            <li><span class="emoji">💰</span> <strong>Budget Pacing Tab</strong> (Optional): Monitors campaign daily budgets against Month-To-Date (MTD) spend and flags pacing issues. <em>Default in script: Enabled</em>.</li>
+            <li><span class="emoji">⏳</span> <strong>Lag-Adjusted Forecast Tab</strong> (Optional): Calculates historical conversion lag factors and applies them to recent performance to provide lag-adjusted conversion data and a short-term forecast. Includes a hidden <code>zz - Conv. Lag Factors</code> tab. <em>Default in script: Enabled</em>.</li>
+            <li><span class="emoji">💡</span> <strong>Recommendations Tab</strong>: Automated, rule-based suggestions based on performance observed in other analytical tabs.</li>
+            <li><span class="emoji">📚</span> <strong>Shared Library Export</strong> (Optional): Exports data from shared libraries, currently focused on Negative Keyword Lists (name, ID, member count). <em>Default in script: Enabled</em>.</li>
+            <li><span class="emoji">📝</span> <strong>Raw Data Tabs (Hidden)</strong>: Multiple hidden sheets prefixed with <code>Raw Data - </code> store the direct output from Google Ads queries, serving as the foundation for the visible dashboard tabs.</li>
+            <li><span class="emoji">❗</span> <strong>ERRORS Tab</strong>: Logs any errors encountered during script execution.</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <h2><span class="emoji">⚙️</span> How It Works (The "Magic" Explained Simply)</h2>
+        <ol>
+            <li><strong>Connects to Google Ads:</strong> Securely accesses your Google Ads account data using Google Ads Query Language (GAQL). It only <em>reads</em> data.</li>
+            <li><strong>Pulls the Data:</strong> Executes a series of pre-defined GAQL queries to gather performance metrics for campaigns, products, assets, daily trends, etc., based on the date range and features you've configured in the script.</li>
+            <li><strong>Processes & Aggregates:</strong> The script then processes this raw data, calculates derived metrics (like ROAS, CPA, CTR, AOV), aggregates data where needed (e.g., for product summaries or daily totals), and prepares it for the dashboard.</li>
+            <li><strong>Builds Your Dashboard:</strong> Finally, it creates (or clears and re-populates) a series of tabs in your specified Google Sheet. It writes the processed data, applies formatting for readability (including currency and percentages based on your account's settings), and generates charts on the Overview tab.</li>
+        </ol>
+
+        <hr class="section-divider">
+
+        <h2><span class="emoji">🚀</span> Getting Started: Your Step-by-Step Guide</h2>
+        <p>Ready to get your automated e-commerce dashboard? Follow these steps:</p>
+
+        <h3>Prerequisites:</h3>
+        <ul>
+            <li><span class="emoji">✅</span> Access to a Google Ads account.</li>
+            <li><span class="emoji">📄</span> A Google Sheet (create a new one, or use an existing one – the script will add/overwrite many tabs).</li>
+        </ul>
+
+        <h3>Step 1: Copy the Script Code</h3>
+        <p>Grab all the code from the <code>.js</code> file containing this script. Select everything (Ctrl+A or Cmd+A) and copy it (Ctrl+C or Cmd+C).</p>
+
+        <h3>Step 2: Open Google Ads Scripts</h3>
+        <p>Log in to your Google Ads account.</p>
+        <p>Navigate to <strong>Tools & Settings</strong> (wrench icon <span class="emoji">🔧</span>) > <strong>BULK ACTIONS</strong> > <strong>Scripts</strong>.</p>
+
+        <h3>Step 3: Paste and Name Your Script</h3>
+        <p>Click the blue <strong>+</strong> button to create a new script.</p>
+        <p>Delete any placeholder code in the editor.</p>
+        <p>Paste the entire script code you copied.</p>
+        <p>Name your script (e.g., "E-commerce Dashboard Generator V1.0").</p>
+
+        <h3>Step 4: Configure the Script (Crucial! <span class="emoji">🛠️</span>)</h3>
+        <p>Scroll to the <strong><code>--- Section 1: SCRIPT_CONFIGURATION ---</code></strong> at the top of the script.</p>
+        <ol>
+            <li><strong><code>SPREADSHEET_ID</code></strong>:
+                <p>Find the line: <code>const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE';</code> (In the original script it's <code>13lu2NEXvZxfAZ-2P40Am5uF1scagRD3b0A86kAA-7N4</code>, change this).</p>
+                <p>Replace <code>'YOUR_SPREADSHEET_ID_HERE'</code> with the actual ID of your Google Sheet. The ID is the long string of characters in the sheet's URL between <code>/d/</code> and <code>/edit</code>.</p>
+                <div class="note"><em>Example: If URL is <code>https://docs.google.com/spreadsheets/d/ABC123XYZ789/edit</code>, the ID is <code>ABC123XYZ789</code>.</em></div>
+            </li>
+            <li><strong><code>TARGET_CUSTOMER_ID</code></strong>:
+                <p><code>const TARGET_CUSTOMER_ID = '';</code></p>
+                <p>If running from an MCC to target a specific client account, enter the client's Customer ID here (e.g., <code>'123-456-7890'</code>). Leave empty (<code>''</code>) if running directly in the client account.</p>
+            </li>
+            <li><strong><code>REPORT_START_DATE</code> and <code>REPORT_END_DATE</code></strong>:
+                <p><code>const REPORT_START_DATE = '2024-01-01';</code></p>
+                <p><code>const REPORT_END_DATE = '2025-12-31';</code></p>
+                <p>Set your desired reporting period in <code>YYYY-MM-DD</code> format.</p>
+            </li>
+            <li><strong>Feature Toggles (<code>ENABLE_..._TAB</code> constants)</strong>:
+                <p>Review constants like <code>ENABLE_IMPRESSION_SHARE_TAB</code>, <code>ENABLE_BUDGET_PACING_TAB</code>, etc.</p>
+                <p>Set them to <code>true</code> to include the feature and its corresponding tab(s), or <code>false</code> to exclude them.</p>
+            </li>
+            <li><strong><code>DEBUG_MODE</code></strong> (Optional):
+                <p><code>const DEBUG_MODE = false;</code></p>
+                <p>Set to <code>true</code> for more detailed console logs if troubleshooting.</p>
+            </li>
+        </ol>
+
+        <h3>Step 5: Authorize the Script</h3>
+        <ul>
+            <li>Click <strong>Save</strong> (<span class="emoji">💾</span> icon).</li>
+            <li>Click <strong>Run</strong> (<span class="emoji">▶️</span> icon).</li>
+            <li>A pop-up "Authorization required" will appear. Click <strong>Review permissions</strong>.</li>
+            <li>Choose your Google account.</li>
+            <li>If you see "Google hasn’t verified this app," click <strong>Advanced</strong>, then <strong>"Go to [Your Script Name] (unsafe)"</strong>.</li>
+            <li>Review permissions and click <strong>Allow</strong>.</li>
+        </ul>
+
+        <h3>Step 6: Run the Script! <span class="emoji">🏃💨</span></h3>
+        <p>Click <strong>Run</strong> (<span class="emoji">▶️</span> icon) again if needed.</p>
+        <p>The script may take several minutes. Check the <strong>Logs</strong> section below the code editor for progress.</p>
+
+        <h3>Step 7: Check Your Google Sheet! <span class="emoji">🎉</span></h3>
+        <p>Once the logs indicate completion (e.g., "Script ... completed"), open your Google Sheet.</p>
+        <p>You'll find your new e-commerce dashboard with multiple tabs!</p>
+
+        <hr class="section-divider">
+
+        <h2><span class="emoji">📊</span> Understanding the Report Tabs</h2>
+        <p>The script generates several tabs in your Google Sheet. Here's a general idea:</p>
+        <ul>
+            <li><span class="emoji">⚪</span> <strong><code>01 - User Guide</code></strong>: Instructions and overview.</li>
+            <li><span class="emoji">⚪</span> <strong><code>02 - Settings & Config</code></strong>: Summary of script settings and account info.</li>
+            <li><span class="emoji">📊</span> <strong><code>03 - Overview Dashboard</code></strong>: High-level KPIs and charts. <strong>Start your analysis here!</strong></li>
+            <li><span class="emoji">📈</span> <strong><code>04 - Campaign Performance</code></strong>: Detailed campaign data.</li>
+            <li><span class="emoji">🛍️</span> <strong><code>05 - Product Performance Analysis</code></strong>: Product-specific metrics and recommendations.</li>
+            <li><span class="emoji">🖼️</span> <strong><code>06 - Asset Performance</code></strong>: (If enabled) Asset-level data.</li>
+            <li><span class="emoji">📉</span> <strong><code>07 - Impression Share</code></strong>: (If enabled) IS metrics.</li>
+            <li><span class="emoji">💰</span> <strong><code>08 - Budget Pacing</code></strong>: (If enabled) Campaign budget pacing status.</li>
+            <li><span class="emoji">⏳</span> <strong><code>09 - Lag-Adj. Forecast</code></strong>: (If enabled) Conversion data adjusted for lag.</li>
+            <li><span class="emoji">💡</span> <strong><code>10 - Recommendations</code></strong>: Automated suggestions.</li>
+            <li><span class="emoji">🕵️</span> <strong><code>zz - Conv. Lag Factors (Hidden)</code></strong>: (If enabled) Data used for lag adjustments.</li>
+            <li><span class="emoji">❗</span> <strong><code>ERRORS</code></strong>: Logs any script errors. Check this if something seems wrong.</li>
+            <li><span class="emoji">👻</span> <strong><code>Raw Data - ...</code> (Hidden Sheets)</strong>: The foundational data pulled from Google Ads.</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <h2><span class="emoji">⚠️</span> Important Notes & Disclaimer</h2>
+        <ul>
+            <li><strong>Execution Time:</strong> For large accounts or long date ranges, the script might approach Google Ads Scripts' 30-minute execution limit. If it times out, try a shorter date range.</li>
+            <li><strong>Read-Only for Ads Account:</strong> The script <strong>DOES NOT MAKE ANY CHANGES</strong> to your Google Ads campaigns, ad groups, ads, or settings. It only reads data.</li>
+            <li><strong>Data Accuracy:</strong> Data is pulled from the Google Ads API. Minor discrepancies with the UI can occasionally occur due to reporting lags or attribution differences.</li>
+            <li><strong>Review Recommendations Critically:</strong> The automated recommendations are based on the script's logic and the thresholds defined. Always apply your expertise and judgment before making strategic decisions or changes to your account.</li>
+            <li><strong>Permissions:</strong> Ensure you've granted the necessary permissions for the script to access Google Ads and Google Sheets.</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <h2><span class="emoji">🤔</span> Troubleshooting Common Issues</h2>
+        <ul>
+            <li><strong>"Script timed out"</strong>: Reduce the date range in <code>SCRIPT_CONFIGURATION</code>.</li>
+            <li><strong>"#ERROR!" or "#VALUE!" in cells</strong>:
+                <ul>
+                    <li>Check the "ERRORS" tab in the spreadsheet.</li>
+                    <li>Verify <code>SPREADSHEET_ID</code> is correct.</li>
+                    <li>Ensure all date formats and other settings in <code>SCRIPT_CONFIGURATION</code> are valid.</li>
+                </ul>
+            </li>
+            <li><strong>"No data" on a tab</strong>:
+                <ul>
+                    <li>There might genuinely be no data for that report in the selected period.</li>
+                    <li>Double-check your date range and feature toggle settings.</li>
+                </ul>
+            </li>
+        </ul>
+        <p class="important-note">Happy Dashboarding! May your e-commerce insights lead to great success!</p>
+    </div>
+</body>
+</html>
