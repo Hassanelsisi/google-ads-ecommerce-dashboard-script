@@ -106,7 +106,7 @@ Scroll to the --- Section 1: SCRIPT_CONFIGURATION --- at the top of the script.
 
 SPREADSHEET_ID:
 
-Find the line: const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE'; (In the original script it's YOUR_SPREADSHEET_ID_HERE, change this).
+Find the line: const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE'; (In the original script it's 13lu2NEXvZxfAZ-2P40Am5uF1scagRD3b0A86kAA-7N4, change this).
 
 Replace 'YOUR_SPREADSHEET_ID_HERE' with the actual ID of your Google Sheet. The ID is the long string of characters in the sheet's URL between /d/ and /edit.
 Example: If URL is https://docs.google.com/spreadsheets/d/ABC123XYZ789/edit, the ID is ABC123XYZ789.
